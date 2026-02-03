@@ -1,0 +1,20 @@
+{
+  "name": "basic-informational-site",
+  "version": "1.0.0",
+  "description": "Node.js basic information site",
+  "homepage": "https://github.com/leetbeet/basic-informational-site#readme",
+  "bugs": {
+    "url": "https://github.com/leetbeet/basic-informational-site/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leetbeet/basic-informational-site.git"
+  },
+  "license": "MIT",
+  "author": "leetbeet",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
