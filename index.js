@@ -1,32 +1,26 @@
-import http from "node:http";
-import fs from "node:fs";
+import express from "express";
+import path from "path";
+import { fileURLToPath } from "url";
 
-const displayFile = (path, res) => {
-  fs.readFile(path, (err, data) => {
-    if (err) {
-      res.statusCode = 500;
-      res.end();
-      return;
-    }
+const app = express();
 
-    res.setHeader("Content-Type", "text/html");
-    res.end(data);
-  });
-};
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-const server = http.createServer((req, res) => {
-  const url = req.url;
-
-  if (url === "/") {
-    displayFile("./index.html", res);
-  } else if (url === "/about") {
-    displayFile("./about.html", res);
-  } else if (url === "/contact-me") {
-    displayFile("./contact-me.html", res);
-  } else {
-    res.statusCode = 404;
-    displayFile("./404.html", res);
-  }
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
-server.listen(8080);
+app.get("/about", (req, res) => {
+  res.sendFile(path.join(__dirname, "about.html"));
+});
+
+app.get("/contact-me", (req, res) => {
+  res.sendFile(path.join(__dirname, "contact-me.html"));
+});
+
+app.use((req, res) => {
+  res.status(404).sendFile(path.join(__dirname, "404.html"));
+});
+
+app.listen(8080);
